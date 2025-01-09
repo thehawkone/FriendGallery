@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Application.Services;
 
-public class TokenService : ITokenService
+public class TokenService
 {
     private readonly IConfiguration _configuration;
 

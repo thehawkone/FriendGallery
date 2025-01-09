@@ -20,7 +20,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
-      <ProjectReference Include="..\ApplicationAPI\ApplicationAPI.csproj" />
+      <ProjectReference Include="..\Application\Application.csproj" />
     </ItemGroup>
 
 </Project>

@@ -5,6 +5,8 @@ using Domain.Abstractions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Application.Interfaces;
+using Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +23,9 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
 
 //Service
-builder.Services.AddScoped<ITokenService, TokenService>();
-    
+builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<IImageService, ImageService>();
+builder.Services.AddScoped<IUserService, UserService>();
     
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 
