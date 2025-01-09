@@ -1,5 +1,4 @@
 ﻿using Application.DTO.User;
-using DataAccess;
 using Domain.Abstractions;
 using Domain.Models;
 
@@ -8,13 +7,11 @@ namespace Application.Services;
 public class UserService
 {
     private readonly TokenService _tokenService;
-    private readonly AppDbContext _appDbContext;
     private readonly IUserRepository _userRepository;
 
-    public UserService(IUserRepository userRepository, AppDbContext appDbContext, TokenService tokenService)
+    public UserService(IUserRepository userRepository, TokenService tokenService)
     {
         _userRepository = userRepository;
-        _appDbContext = appDbContext;
         _tokenService = tokenService;
     }
 
@@ -30,8 +27,6 @@ public class UserService
         };
         
         await _userRepository.CreateUserAsync(user);
-        await _appDbContext.SaveChangesAsync();
-        
         return new UserDto { UserId = Guid.NewGuid(), Username = user.Username };
     }
 
@@ -64,7 +59,6 @@ public class UserService
         user.PasswordHash = newHashedPassword;
         
         await _userRepository.UpdateUserAsync(user);
-        await _appDbContext.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Guid userId)
@@ -75,9 +69,8 @@ public class UserService
         }
         
         await _userRepository.DeleteUserAsync(user);
-        await _appDbContext.SaveChangesAsync();
     }
-
+    
     private string HashPassword(string password)
     {
         return BCrypt.Net.BCrypt.HashPassword(password);

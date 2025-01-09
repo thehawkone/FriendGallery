@@ -22,6 +22,21 @@ public class UserRepository : IUserRepository
         return await _context.Users.FirstOrDefaultAsync(u => u.Username == name);
     }
 
+    public async Task<User> GetUserWithImagesAsync(Guid userId)
+    {
+        return (await _context.Users
+            .Include(u => u.Images)
+            .FirstOrDefaultAsync(u => u.UserId == userId))!;
+    }
+
+    public async Task<User> GetUserWithFriendsAsync(Guid userId)
+    {
+        return (await _context.Users
+            .Include(u => u.Friends)
+            .ThenInclude(uf => uf.Friend)
+            .FirstOrDefaultAsync(u => u.UserId == userId))!;
+    }
+    
     public async Task CreateUserAsync(User user)
     {
         await _context.Users.AddAsync(user);
