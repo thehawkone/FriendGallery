@@ -1,10 +1,11 @@
 ﻿using Application.DTO.Image;
+using Application.Interfaces;
 using Domain.Abstractions;
 using Domain.Models;
 
 namespace Application.Services;
 
-public class ImageService 
+public class ImageService : IImageService
 {
     private readonly IUserRepository _userRepository;
     private readonly IImageRepository _imageRepository;

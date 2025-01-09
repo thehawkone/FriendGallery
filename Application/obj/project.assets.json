@@ -34,25 +34,6 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.AspNetCore.OpenApi/9.0.0-preview.4.24267.6": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.OpenApi": "1.6.13"
-        },
-        "compile": {
-          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "related": ".xml"
-          }
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
-      },
       "Microsoft.EntityFrameworkCore/8.0.10": {
         "type": "package",
         "dependencies": {
@@ -523,23 +504,6 @@
           }
         }
       },
-      "ApplicationAPI/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v9.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.OpenApi": "9.0.0-preview.4.24267.6",
-          "Swashbuckle.AspNetCore": "6.4.0"
-        },
-        "compile": {
-          "bin/placeholder/ApplicationAPI.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ApplicationAPI.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
-      },
       "DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
@@ -612,21 +576,6 @@
         "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
         "microsoft.aspnetcore.authentication.jwtbearer.8.0.10.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
-      ]
-    },
-    "Microsoft.AspNetCore.OpenApi/9.0.0-preview.4.24267.6": {
-      "sha512": "DYR9gBVnP+rGZW8qMz1gZ/hn0xqNxTidBP1R9bIIeuXkDW638L1wZWGQlJIn378q0Ybvn7C0ghfxt+IiHLUjwA==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.openapi/9.0.0-preview.4.24267.6",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll",
-        "lib/net9.0/Microsoft.AspNetCore.OpenApi.xml",
-        "microsoft.aspnetcore.openapi.9.0.0-preview.4.24267.6.nupkg.sha512",
-        "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
     "Microsoft.EntityFrameworkCore/8.0.10": {
@@ -1556,11 +1505,6 @@
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
-    "ApplicationAPI/1.0.0": {
-      "type": "project",
-      "path": "../ApplicationAPI/ApplicationAPI.csproj",
-      "msbuildProject": "../ApplicationAPI/ApplicationAPI.csproj"
-    },
     "DataAccess/1.0.0": {
       "type": "project",
       "path": "../DataAccess/DataAccess.csproj",
@@ -1574,7 +1518,6 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "ApplicationAPI >= 1.0.0",
       "BCrypt.Net-Next >= 4.0.3",
       "DataAccess >= 1.0.0",
       "Domain >= 1.0.0",
@@ -1607,9 +1550,6 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\ApplicationAPI\\ApplicationAPI.csproj": {
-              "projectPath": "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\ApplicationAPI\\ApplicationAPI.csproj"
-            },
             "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\DataAccess\\DataAccess.csproj": {
               "projectPath": "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\DataAccess\\DataAccess.csproj"
             },

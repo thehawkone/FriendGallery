@@ -1,10 +1,11 @@
 ﻿using Application.DTO.User;
+using Application.Interfaces;
 using Domain.Abstractions;
 using Domain.Models;
 
 namespace Application.Services;
 
-public class UserService
+public class UserService : IUserService
 {
     private readonly TokenService _tokenService;
     private readonly IUserRepository _userRepository;

@@ -1,12 +1,14 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Application.Interfaces;
+using Domain.Abstractions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Application.Services;
 
-public class TokenService
+public class TokenService : ITokenService
 {
     private readonly IConfiguration _configuration;
 
