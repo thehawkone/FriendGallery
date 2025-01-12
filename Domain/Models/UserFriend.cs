@@ -4,7 +4,7 @@ public class UserFriend
 {
     public Guid UserId { get; set; }
     public User User { get; set; }
-    
+    public bool IsConfirmed { get; set; }
     public Guid FriendId { get; set; }
     public User Friend { get; set; }
 }
