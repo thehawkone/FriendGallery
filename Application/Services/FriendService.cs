@@ -46,6 +46,31 @@ public class FriendService
 
         await _appDbContext.SaveChangesAsync();
     }
+
+    public async Task ConfirmFriendshipAsync(Guid friendId)
+    {
+        var userId = GetCurrentUserId();
+        if (userId == null) {
+            throw new Exception("Пользователь не найден");
+        }
+        
+        var friendShip1 = await _appDbContext.UserFriends
+            .FirstOrDefaultAsync(f => f.UserId == userId && f.FriendId == friendId && !f.IsConfirmed);
+        var friendShip2 = await _appDbContext.UserFriends
+            .FirstOrDefaultAsync(f => f.UserId == friendId && f.FriendId == userId && !f.IsConfirmed);
+        
+        if (friendShip1 == null || friendShip2 == null) {
+            throw new Exception("Не найдено ожидающих запросов на добавление в друзья");
+        }
+        if (friendShip1.IsConfirmed || friendShip2.IsConfirmed) {
+            throw new Exception("У одного из пользователей заявка в друзья уже принята");
+        }
+        
+        friendShip1.IsConfirmed = true;
+        friendShip2.IsConfirmed = true;
+        
+        await _appDbContext.SaveChangesAsync();
+    }
     
     private Guid GetCurrentUserId()
     {
