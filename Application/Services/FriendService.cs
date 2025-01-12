@@ -8,18 +8,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services;
 
-public class FriendService
+public class FriendService : IFriendService
 {
-    private readonly TokenService _tokenService;
     private readonly IUserRepository _userRepository;
     private readonly AppDbContext _appDbContext;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
 
-    public FriendService(IUserRepository userRepository, TokenService tokenService, AppDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
+    public FriendService(IUserRepository userRepository, AppDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
     {
         _userRepository = userRepository;
-        _tokenService = tokenService;
         _appDbContext = appDbContext;
         _httpContextAccessor = httpContextAccessor;
     }
