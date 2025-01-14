@@ -15,14 +15,14 @@ public class FriendController : ControllerBase
     }
 
     [HttpPost("add-friend")]
-    public async Task<IActionResult> AddFriend(Guid friendId)
+    public async Task<IActionResult> AddFriend([FromQuery] Guid friendId)
     {
         await _friendService.AddFriend(friendId);
         return Ok("Заявка в друзья отправлена");
     }
 
     [HttpPut("confirm-friend")]
-    public async Task<IActionResult> ConfirmFriend(Guid friendId)
+    public async Task<IActionResult> ConfirmFriend([FromQuery] Guid friendId)
     {
         await _friendService.ConfirmFriendshipAsync(friendId);
         return Ok("Заявка в друзья успешно принята");

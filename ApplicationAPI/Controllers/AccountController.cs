@@ -30,14 +30,14 @@ public class AccountController : ControllerBase
     }
 
     [HttpPut("change-password")]
-    public async Task<IActionResult> ChangePassword(Guid userId, [FromBody] ChangePasswordDto changePasswordDto)
+    public async Task<IActionResult> ChangePassword([FromQuery] Guid userId, [FromBody] ChangePasswordDto changePasswordDto)
     {
         await _userService.ChangePasswordAsync(userId, changePasswordDto.Password, changePasswordDto.NewPassword);
         return Ok("Пароль успешно изменён");
     }
 
     [HttpDelete("delete")]
-    public async Task<IActionResult> Delete(Guid userId)
+    public async Task<IActionResult> Delete([FromQuery] Guid userId)
     {
         await _userService.DeleteAsync(userId);
         return Ok("Пользователь успешно удалён");
