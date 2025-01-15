@@ -1,10 +1,9 @@
 ﻿using Application.DTO.Image;
+using Microsoft.AspNetCore.Http;
 
 namespace Application.Interfaces;
 
 public interface IImageService
 {
-    Task UploadImageAsync(Guid userId, string imagePath);
-    Task<List<ImageDto>> GetUserImagesAsync(Guid userId);
-    Task<List<ImageDto>> GetFriendImagesAsync(Guid userId, Guid friendId);
+    Task UploadImageAsync(Guid userId, IFormFile imageFile);
 }

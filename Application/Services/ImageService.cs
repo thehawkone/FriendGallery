@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using Domain.Abstractions;
 using Domain.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Application.Services;
 
@@ -15,50 +16,37 @@ public class ImageService : IImageService
         _userRepository = userRepository;
         _imageRepository = imageRepository;
     }
-
-    public async Task UploadImageAsync(Guid userId, string imagePath)
+    
+    public async Task UploadImageAsync(Guid userId, IFormFile imageFile)
     {
-        var user = await _userRepository.GetUserByIdAsync(userId);
-        if (user == null) {
-            throw new Exception("Пользователь не найден");
+        if (imageFile == null || imageFile.Length == 0) {
+            throw new ArgumentException("Файл отсутствует или пустой", nameof(imageFile));
         }
         
-        var image = new Image { PhotoId = Guid.NewGuid(), FilePath = imagePath , UserId = userId, User = user};
-        user.AddImage(image);
-
-        await _imageRepository.AddImageAsync(image);
-    }
-
-    public async Task<List<ImageDto>> GetUserImagesAsync(Guid userId)
-    {
         var user = await _userRepository.GetUserByIdAsync(userId);
         if (user == null) {
-            throw new Exception("Пользователь не найден");
+            throw new ArgumentException("Пользователь не найден");
         }
+        
+        var fileName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);
+        var filePath = Path.Combine(@"C:\Users\Administrator\Desktop\Images", fileName);
 
-        return user.Images.Select(i => new ImageDto
+        using (var fileStream = new FileStream(filePath, FileMode.Create)) {
+            await imageFile.CopyToAsync(fileStream);
+        }
+        
+        var image = new Image
         {
-            PhotoId = i.PhotoId,
-            FilePath = i.FilePath,
-        }).ToList();
-    }
-
-    public async Task<List<ImageDto>> GetFriendImagesAsync(Guid userId, Guid friendId)
-    {
-        var user = await _userRepository.GetUserWithFriendsAsync(userId);
-        if (user == null) {
-            throw new Exception("Пользователь не найден");
-        }
-
-        var friend = user.Friends.FirstOrDefault(f => f.FriendId == friendId)!.Friend;
-        if (friend == null) {
-            throw new UnauthorizedAccessException("Доступ к фотографиям друга запрещён!");
-        }
-
-        return friend.Images.Select(i => new ImageDto
-        {
-            PhotoId = i.PhotoId,
-            FilePath = i.FilePath,
-        }).ToList();
+            PhotoId = Guid.NewGuid(),
+            FilePath = filePath,
+            FileName = fileName,
+            FileSize = imageFile.Length,
+            ContentType = imageFile.ContentType,
+            UserId = user.UserId,
+            User = user
+        };
+        
+        user.AddImage(image);
+        await _imageRepository.AddImageAsync(image);
     }
 }

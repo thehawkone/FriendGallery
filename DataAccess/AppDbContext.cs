@@ -3,12 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+public class AppDbContext : DbContext
 {
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+        : base(options) { }
     public DbSet<User> Users { get; set; }
     public DbSet<Image> Images { get; set; }
     public DbSet<UserFriend> UserFriends { get; set; }
-
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -29,7 +31,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             entity.HasOne(i => i.User)
                 .WithMany(u => u.Images)
                 .HasForeignKey(i => i.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         });
 
         modelBuilder.Entity<UserFriend>(entity =>
@@ -39,12 +41,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             entity.HasOne(uf => uf.User)
                 .WithMany(u => u.Friends)
                 .HasForeignKey(uf => uf.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             entity.HasOne(uf => uf.Friend)
                 .WithMany(uf => uf.AddedByFriends)
                 .HasForeignKey(uf => uf.FriendId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         });
     }
 }

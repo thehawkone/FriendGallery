@@ -15,22 +15,9 @@ public class ImageController : ControllerBase
     }
 
     [HttpPost("upload-image")]
-    public async Task<IActionResult> UploadImage([FromQuery] Guid userId, string imagePath)
+    public async Task<IActionResult> UploadImage([FromQuery] Guid userId, IFormFile imageFile)
     {
-        await _imageService.UploadImageAsync(userId, imagePath);
+        await _imageService.UploadImageAsync(userId, imageFile);
         return Ok("Фотография успешно загружена");
-    }
-
-    [HttpGet("user-images")]
-    public async Task<IActionResult> GetUserImages([FromQuery] Guid userId)
-    {
-        await _imageService.GetUserImagesAsync(userId);
-        return Ok("Успешно");
-    }
-
-    public async Task<IActionResult> GetFriendImages([FromQuery] Guid userId, Guid friendId)
-    {
-        await _imageService.GetFriendImagesAsync(userId, friendId);
-        return Ok("Успешно");
     }
 }
