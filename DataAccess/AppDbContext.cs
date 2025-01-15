@@ -5,8 +5,9 @@ namespace DataAccess;
 
 public class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options)
-        : base(options) { }
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    {
+    }
     public DbSet<User> Users { get; set; }
     public DbSet<Image> Images { get; set; }
     public DbSet<UserFriend> UserFriends { get; set; }
@@ -28,6 +29,9 @@ public class AppDbContext : DbContext
         {
             entity.HasKey(i => i.PhotoId);
             entity.Property(i => i.FilePath).IsRequired();
+            entity.Property(i => i.FileName).IsRequired();
+            entity.Property(i => i.FileSize).IsRequired();
+            entity.Property(i => i.ContentType).IsRequired();
             entity.HasOne(i => i.User)
                 .WithMany(u => u.Images)
                 .HasForeignKey(i => i.UserId)

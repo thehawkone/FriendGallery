@@ -1,4 +1,5 @@
 C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\bin\Debug\net9.0\DataAccess.deps.json
+C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\bin\Debug\net9.0\DataAccess.runtimeconfig.json
 C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\bin\Debug\net9.0\DataAccess.dll
 C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\bin\Debug\net9.0\DataAccess.pdb
 C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\bin\Debug\net9.0\Domain.dll
@@ -13,6 +14,5 @@ C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\obj\Debug\net9.0\D
 C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\obj\Debug\net9.0\DataAccess.dll
 C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\obj\Debug\net9.0\refint\DataAccess.dll
 C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\obj\Debug\net9.0\DataAccess.pdb
-C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\obj\Debug\net9.0\ref\DataAccess.dll
-C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\bin\Debug\net9.0\DataAccess.runtimeconfig.json
 C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\obj\Debug\net9.0\DataAccess.genruntimeconfig.cache
+C:\Users\Administrator\RiderProjects\FriendGallery\DataAccess\obj\Debug\net9.0\ref\DataAccess.dll
