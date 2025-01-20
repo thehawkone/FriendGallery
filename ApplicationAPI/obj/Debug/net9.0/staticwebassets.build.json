@@ -1,12 +1,20 @@
 {
   "Version": 1,
-  "Hash": "M1LSD9w9st4X/jG8J9NHdAutsi88bscZoW0f6BrLvkc=",
+  "Hash": "hYhcVfPyk9I5IBxOnwVSkVmKayrx575BjOjV9Ub9GYk=",
   "Source": "ApplicationAPI",
   "BasePath": "_content/ApplicationAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ApplicationAPI\\wwwroot",
+      "Source": "ApplicationAPI",
+      "ContentRoot": "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\ApplicationAPI\\wwwroot\\",
+      "BasePath": "_content/ApplicationAPI",
+      "Pattern": "**"
+    }
+  ],
   "Assets": [],
   "Endpoints": []
 }

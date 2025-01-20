@@ -122,3 +122,4 @@ C:\Users\Administrator\RiderProjects\FriendGallery\ApplicationAPI\obj\Debug\net9
 C:\Users\Administrator\RiderProjects\FriendGallery\ApplicationAPI\obj\Debug\net9.0\ApplicationAPI.pdb
 C:\Users\Administrator\RiderProjects\FriendGallery\ApplicationAPI\obj\Debug\net9.0\ApplicationAPI.genruntimeconfig.cache
 C:\Users\Administrator\RiderProjects\FriendGallery\ApplicationAPI\obj\Debug\net9.0\ref\ApplicationAPI.dll
+C:\Users\Administrator\RiderProjects\FriendGallery\ApplicationAPI\bin\Debug\net9.0\ApplicationAPI.staticwebassets.runtime.json

@@ -1,4 +1,5 @@
-﻿using Domain.Abstractions;
+﻿using System.Net.Mime;
+using Domain.Abstractions;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +9,8 @@ public class ImageRepository : IImageRepository
 {
     private readonly AppDbContext _context;
 
-    public ImageRepository(AppDbContext context) {
+    public ImageRepository(AppDbContext context)
+    {
         _context = context;
     }
 
@@ -18,9 +20,11 @@ public class ImageRepository : IImageRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<Image> GetImageAsync(Image image)
+    public async Task<IEnumerable<Image>> GetImagesByUserIdAsync(Guid userId)
     {
-        return await _context.Images.FindAsync(image.PhotoId);
+        return await _context.Images
+            .Where(i => i.UserId == userId)
+            .ToListAsync();
     }
 
     public async Task UpdateImageAsync(Image image)

@@ -10,11 +10,6 @@ using Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var storagePath = builder.Configuration["StorageSettings:ImagePath"];
-if (!Directory.Exists(storagePath)) {
-    Directory.CreateDirectory(storagePath!);
-}
-
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
     
@@ -27,6 +22,7 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IFriendService, FriendService>();
+builder.Services.AddHttpContextAccessor();
     
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 

@@ -20,4 +20,11 @@ public class ImageController : ControllerBase
         await _imageService.UploadImageAsync(userId, imageFile);
         return Ok("Фотография успешно загружена");
     }
+
+    [HttpGet("viewing-my-images")]
+    public async Task<IActionResult> GetUserImages(Guid userId)
+    {
+        var images = await _imageService.GetUserImagesAsync(userId);
+        return Ok(images); 
+    }
 }
