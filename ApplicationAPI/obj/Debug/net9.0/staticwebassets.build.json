@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hYhcVfPyk9I5IBxOnwVSkVmKayrx575BjOjV9Ub9GYk=",
+  "Hash": "Ioo2MuAAANDmv5Zrejzzcqd7tectTglxXoVL/WAl3ko=",
   "Source": "ApplicationAPI",
   "BasePath": "_content/ApplicationAPI",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "ApplicationAPI\\wwwroot",
       "Source": "ApplicationAPI",
-      "ContentRoot": "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\ApplicationAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Administrator\\Documents\\RiderProjects\\FriendGallery\\ApplicationAPI\\wwwroot\\",
       "BasePath": "_content/ApplicationAPI",
       "Pattern": "**"
     }

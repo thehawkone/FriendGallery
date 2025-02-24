@@ -11,13 +11,16 @@ namespace Application.Services;
 public class FriendService : IFriendService
 {
     private readonly IUserRepository _userRepository;
+    private readonly IImageRepository _imageRepository;
     private readonly AppDbContext _appDbContext;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
 
-    public FriendService(IUserRepository userRepository, AppDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
+    public FriendService(IUserRepository userRepository, IImageRepository imageRepository, AppDbContext appDbContext,
+        IHttpContextAccessor httpContextAccessor)
     {
         _userRepository = userRepository;
+        _imageRepository = imageRepository;
         _appDbContext = appDbContext;
         _httpContextAccessor = httpContextAccessor;
     }
@@ -25,15 +28,15 @@ public class FriendService : IFriendService
     public async Task AddFriend(Guid friendId)
     {
         var userId = GetCurrentUserId();
+        if (userId == friendId) throw new Exception("Нельзя добавить себя в друзья");
+        
         var friend = _userRepository.GetUserByIdAsync(friendId);
-        if (friend == null || userId == null) {
-            throw new Exception("Пользователь или друг не найден");
-        }
+        if (friend == null)  throw new Exception("Пользователь не найден");
         
         var existingFriend = await _appDbContext.UserFriends
             .FirstOrDefaultAsync(f => f.UserId == userId && f.FriendId == friendId);
         if (existingFriend != null) {
-            throw new Exception("Вы уже являетесь друзьями!");
+            throw new Exception("Запрос уже отправлен или вы уже являетесь друзьями");
         }
         
         var friendShip1 = new UserFriend { UserId = userId, FriendId = friendId, IsConfirmed = false};
@@ -68,6 +71,36 @@ public class FriendService : IFriendService
         friendShip2.IsConfirmed = true;
         
         await _appDbContext.SaveChangesAsync();
+    }
+
+    public async Task<List<UserDto>> GetFriendshipsAsync(Guid userId)
+    {
+        var incomingRequest = await _appDbContext.UserFriends
+            .Where(f => f.FriendId == userId && !f.IsConfirmed)
+            .Select(f => f.User)
+            .ToListAsync();
+        
+        return incomingRequest.Select(user => new UserDto
+        {
+            UserId = user.UserId,
+            Username = user.Username,
+        }).ToList();
+    }
+
+    public async Task<bool> IsFriendAsync(Guid userId, Guid friendId)
+    {
+        return await _appDbContext.UserFriends.AnyAsync(f => 
+            f.UserId == userId && f.FriendId == friendId && f.IsConfirmed);
+    }
+
+    public async Task<IEnumerable<Image>> GetFriendImagesAsync(Guid friendId)
+    {
+        var userId = GetCurrentUserId();
+        var isFriend = await IsFriendAsync(userId, friendId);
+
+        if (!isFriend) throw new UnauthorizedAccessException("Вы не можете просматривать изображения этого пользователя");
+        
+        return await _imageRepository.GetImagesByUserIdAsync(friendId);
     }
     
     private Guid GetCurrentUserId()

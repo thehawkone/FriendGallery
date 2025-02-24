@@ -2997,11 +2997,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\ApplicationAPI\\ApplicationAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\Documents\\RiderProjects\\FriendGallery\\ApplicationAPI\\ApplicationAPI.csproj",
       "projectName": "ApplicationAPI",
-      "projectPath": "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\ApplicationAPI\\ApplicationAPI.csproj",
+      "projectPath": "C:\\Users\\Administrator\\Documents\\RiderProjects\\FriendGallery\\ApplicationAPI\\ApplicationAPI.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\ApplicationAPI\\obj\\",
+      "outputPath": "C:\\Users\\Administrator\\Documents\\RiderProjects\\FriendGallery\\ApplicationAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3016,11 +3016,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\Application\\Application.csproj"
+            "C:\\Users\\Administrator\\Documents\\RiderProjects\\FriendGallery\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\Administrator\\Documents\\RiderProjects\\FriendGallery\\Application\\Application.csproj"
             },
-            "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\Users\\Administrator\\RiderProjects\\FriendGallery\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\Administrator\\Documents\\RiderProjects\\FriendGallery\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\Administrator\\Documents\\RiderProjects\\FriendGallery\\DataAccess\\DataAccess.csproj"
             }
           }
         }
@@ -3034,7 +3034,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -3086,7 +3087,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-preview.4.24267.66/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

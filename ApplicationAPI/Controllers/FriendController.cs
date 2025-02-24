@@ -27,4 +27,18 @@ public class FriendController : ControllerBase
         await _friendService.ConfirmFriendshipAsync(friendId);
         return Ok("Заявка в друзья успешно принята");
     }
+
+    [HttpGet("get-friendships")]
+    public async Task<IActionResult> GetFriendships([FromQuery] Guid userId)
+    {
+        var friendships = await _friendService.GetFriendshipsAsync(userId);
+        return Ok(friendships);
+    }
+
+    [HttpGet("get-friend-images")]
+    public async Task<IActionResult> GetFriendImages([FromQuery] Guid friendId)
+    {
+        var images = await _friendService.GetFriendImagesAsync(friendId);
+        return Ok(images);
+    }
 }
